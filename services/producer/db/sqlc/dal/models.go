@@ -5,12 +5,23 @@
 package DAL
 
 import (
+	"encoding/json"
+
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type Outbox struct {
+	ID            pgtype.UUID        `json:"id"`
+	AggregateType string             `json:"aggregateType"`
+	AggregateID   string             `json:"aggregateId"`
+	Type          string             `json:"type"`
+	Payload       json.RawMessage    `json:"payload"`
+	CreatedAt     pgtype.Timestamptz `json:"createdAt"`
+}
+
 type User struct {
-	ID        pgtype.UUID
-	Username  string
-	Email     string
-	CreatedAt pgtype.Timestamptz
+	ID        pgtype.UUID        `json:"id"`
+	Username  string             `json:"username"`
+	Email     string             `json:"email"`
+	CreatedAt pgtype.Timestamptz `json:"createdAt"`
 }

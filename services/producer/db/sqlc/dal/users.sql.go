@@ -18,8 +18,8 @@ RETURNING id, username, email, created_at
 `
 
 type CreateUserParams struct {
-	Username string
-	Email    string
+	Username string `json:"username"`
+	Email    string `json:"email"`
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
@@ -70,8 +70,8 @@ LIMIT $1 OFFSET $2
 `
 
 type ListUsersParams struct {
-	Limit  int32
-	Offset int32
+	Limit  int32 `json:"limit"`
+	Offset int32 `json:"offset"`
 }
 
 func (q *Queries) ListUsers(ctx context.Context, arg ListUsersParams) ([]User, error) {
@@ -107,8 +107,8 @@ RETURNING id, username, email, created_at
 `
 
 type UpdateUserEmailParams struct {
-	ID    pgtype.UUID
-	Email string
+	ID    pgtype.UUID `json:"id"`
+	Email string      `json:"email"`
 }
 
 func (q *Queries) UpdateUserEmail(ctx context.Context, arg UpdateUserEmailParams) (User, error) {
